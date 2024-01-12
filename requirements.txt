@@ -1,0 +1,5 @@
+selenium
+pandas
+boto
+fastparquet
+pyarrow

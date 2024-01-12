@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: akakce-1-webscraping
+#  namespace: ws-1
+spec:
+  timeZone: "Asia/Istanbul"
+  schedule: "00 15 * * *"
+  successfulJobsHistoryLimit: 1
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: akakce-1-webscraping
+            image: akakce-1
+            imagePullPolicy: IfNotPresent
+          # - name: filebeat-container
+          #   image: docker.elastic.co/beats/filebeat:7.17.0
+          #   # Add Filebeat configuration here
+          #   volumeMounts:
+          #   - name: filebeat-config
+          #     mountPath: /etc/filebeat/filebeat.yaml
+          #     subPath: filebeat.yaml
+          # volumes:
+          # - name: filebeat-config
+          #   configMap:
+          #     name: filebeat-configmap
+          restartPolicy: OnFailure
